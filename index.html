@@ -19,7 +19,7 @@
     {
       float k;
       vec3 color;
-      vec2 C = vec2((-2.0 + (gl_FragCoord.x  - movex) / 400.0) / zoom, (-1.0 + (gl_FragCoord.y + movey) / 400.0) / zoom), P0 = C;
+      vec2 C = vec2((-2.0 + ((gl_FragCoord.x - movex) / zoom) / 400.0), (-1.0 + ((gl_FragCoord.y + movey) / zoom) / 400.0)), P0 = C;
 
       for (int i = 0; i > -1; i++)
       {
@@ -229,6 +229,8 @@
     }
     function update_down_checkers_iteration() {
       data = document.getElementById('input_checkers_iteration').value;
+      if (parseInt(data) === 1)
+        return;
       checkers_iteration = parseInt(data) - 1;
       document.getElementById('input_checkers_iteration').value = checkers_iteration;
       if (isNaN(checkers_iteration))
@@ -278,10 +280,10 @@
 
   <br />
 
-  <label for="input_checkers_iteration"> cell width</label> <input type="text" id="input_checkers_iteration"
-    onkeyup="update_checkers_iteration()"><br><input type="button" id="input_checkers_iteration"
-    onmousedown="update_up_checkers_iteration()"> <input type="button" id="input_checkers_iteration"
-    onmousedown="update_down_checkers_iteration()"><br>
+  <label for="input_checkers_iteration">num of iterations</label> <input type="text" id="input_checkers_iteration"
+    onkeyup="update_checkers_iteration()"><br>
+  <b>Up </b><input type="button" id="input_checkers_iteration" onmousedown="update_up_checkers_iteration()">
+  <b>Down </b><input type="button" id="input_checkers_iteration" onmousedown="update_down_checkers_iteration()"><br>
 
 </body>
 
